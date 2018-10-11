@@ -172,13 +172,16 @@ console.log(
 );
 
 //과제1
-console.log(
+
+console.log("///////////1번" +    
     Object.entries(Fruits).filter(Fruits => {
         return Fruits[1].taste === 'sour'
     }).map(Fruits =>{
         return Fruits[0]
     })
 );
+
+
 
 //과제2 
 
@@ -191,42 +194,28 @@ const getStoreFruitsAvg = (store) => {
     return avg;
     
 }
-console.log(getStoreFruitsAvg(storeA));
-console.log(getStoreFruitsAvg(storeB));
-console.log(getStoreFruitsAvg(storeC));
+console.log("///////////2번A  "+getStoreFruitsAvg(storeA));
+console.log("///////////2번B  "+getStoreFruitsAvg(storeB));
+console.log("///////////2번C  "+getStoreFruitsAvg(storeC));
 
 //과제3
 const getDistance = (a,b) => {
-  return  Math.pow(Math.pow(a[0]-b[0],2) + Math.pow(a[1]-b[1],2) , 1/2);
-};
+    return  Math.pow(Math.pow(a[0]-b[0],2) + Math.pow(a[1]-b[1],2) , 1/2);
+  };
+  
+  const findShortStore =(location) =>{
+      return stores.reduce((acc,store) =>{
+          const distance =getDistance(location, store.location);
+          if(!acc.distance || acc.distance > distance){
+              acc.distance=distance;
+              acc.store = store;
+          }
+          return acc;
+      },{});
+  }
+console.log("///////////3번"+findShortStore([1,5]))
 
-const findShortStore =(location) =>{
-    return stores.reduce((acc,store) =>{
-        const distance =getDistance(location, store.location);
-        if(!acc.distance || acc.distance > distance){
-            acc.distance=distance;
-            acc.store = store;
-        }
-        return acc;
-    },{});
-}
-// console.log(findShortStore([1,5]))
 
-//과제3 study
-// const findShortStore = (location, stores) => {
-//     const saveStoreDistance = stores.map(store => {
-//         return {
-//             distance: getDistance(location, store.location),
-//             store: store
-//         }
-//     });
-//     console.log(saveStoreDistance)
-//     const result= saveStoreDistance.reduce((acc, cur) => {
-//         return acc.distance > cur.distance ? cur : acc;
-//     });
-//     return result;
-// }
-// console.log(findShortStore([1,5],storeA))
 
 //과제4
 const hasFruit =(store,fruit) => !!store.fruits[fruit]
@@ -236,7 +225,7 @@ const findShortFruit = (fruit,location) => {
     return findShortStore(location, storesHaveFruit)   
 }
 
-console.log(findShortFruit('pear',[1,5]))
+console.log("///////////4번"+findShortFruit('pear',[1,5]))
  
 //과제6
 
@@ -253,7 +242,4 @@ const allBuyFruit= (buy,store) =>{
         }
 }
 
-// console.log(Object.values(allBuy));
-// console.log('\nstore a apple ::: \n\n', storeA.fruits['apple']);
-console.log(allBuyFruit(allBuy,storeA));
-
+console.log("///////////6번"+allBuyFruit(allBuy,storeA));
